@@ -95,8 +95,10 @@ namespace lojas_soul.Controllers
             {
                 return NotFound();
             }
-            ViewData["FornecedorId"] = new SelectList(_context.Fornecedor, "Id", "Id", produto.FornecedorId);
-            return View(produto);
+            ProdutoViewModel ProdutoVM = new ProdutoViewModel();
+            ProdutoVM.Produto = produto;
+            ProdutoVM.FornecedorList = _context.Fornecedor.ToList();
+            return View(ProdutoVM);
         }
 
         // POST: Produtoes/Edit/5
@@ -104,23 +106,21 @@ namespace lojas_soul.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Valor,Quantidade,FornecedorId")] Produto produto)
+        public async Task<IActionResult> Edit(int id,ProdutoViewModel ProdutoVM)
         {
-            if (id != produto.Id)
+            if (id != ProdutoVM.Produto.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    _context.Update(produto);
+                    _context.Update(ProdutoVM.Produto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProdutoExists(produto.Id))
+                    if (!ProdutoExists(ProdutoVM.Produto.Id))
                     {
                         return NotFound();
                     }
@@ -131,9 +131,6 @@ namespace lojas_soul.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FornecedorId"] = new SelectList(_context.Fornecedor, "Id", "Id", produto.FornecedorId);
-            return View(produto);
-        }
 
         // GET: Produtoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
