@@ -56,7 +56,7 @@ namespace lojas_soul.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Valor,DataPagamento")] DadosPag dadosPag)
+        public async Task<IActionResult> Create(DadosPag dadosPag)
         {
             if (ModelState.IsValid)
             {
