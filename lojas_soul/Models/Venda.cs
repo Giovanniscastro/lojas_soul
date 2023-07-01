@@ -1,4 +1,6 @@
-﻿namespace lojas_soul.Models
+﻿using System.Drawing;
+
+namespace lojas_soul.Models
 {
     public class Venda
     {
@@ -15,5 +17,18 @@
         public Cliente Cliente { get; set; }
 
         public List<Produto> Produtos { get; } = new List<Produto>();
+        public Venda()
+        {
+            // Construtor vazio
+        }
+
+        public Venda(int id, DateTime datavenda, string endereco, int dadosdagId, int clienteId)
+        {
+            Id = id;
+            Datavenda = datavenda;
+            Endereco = endereco;
+            DadosPagId = dadosdagId;
+            ClienteId = clienteId;
+        }
     }
 }

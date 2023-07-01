@@ -1,4 +1,6 @@
-﻿namespace lojas_soul.Models
+﻿using System.Drawing;
+
+namespace lojas_soul.Models
 {
     public class Cliente
     {
@@ -11,6 +13,21 @@
 
         public string Email { get; set; }
         ICollection<Cliente> ClienteList { get; set; } = new List<Cliente>();
+
+        public Cliente()
+        {
+            // Construtor vazio
+        }
+
+        public Cliente(int id, string nome, string cpf, DateTime data_nasc, string telefone, string email)
+        {
+            Id = id;
+            Nome = nome;
+            Cpf = cpf;
+            Data_nasc = data_nasc;
+            Telefone = telefone;
+            Email = email;
+        }
     }
 }
 
