@@ -1,15 +1,18 @@
-﻿namespace lojas_soul.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace lojas_soul.Models
 {
     public class Produto
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        [StringLength(60)]
         public string Descricao { get; set; }
-
         public double Valor { get; set; }
-
+        [StringLength(3)]
         public int Quantidade { get; set; }
-
+        [Display(Name = "Fornecedor")]
         public int FornecedorId { get; set; }
         public Fornecedor Fornecedor { get; set; }
 

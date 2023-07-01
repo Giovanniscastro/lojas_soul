@@ -1,10 +1,18 @@
-﻿namespace lojas_soul.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace lojas_soul.Models
 {
     public class DadosPag
     {
         public int Id { get; set; }
+        [Required]
+        [Display(Name = "Tipo")]
         public Tipo Type { get; set; }
+        [Required]
+        [Range(1,999.99)]
         public double Valor { get; set; }
+        [Display(Name = "Data Pagamento")]
         public DateTime DataPagamento { get; set; }
         public DadosPag()
         {

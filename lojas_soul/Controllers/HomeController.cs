@@ -1,4 +1,5 @@
 ﻿using lojas_soul.Models;
+using lojas_soul.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,7 +16,11 @@ namespace lojas_soul.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var dashboardGraphs = new DashboardGraphsViewModel();
+
+            dashboardGraphs.Produto = GetProdutoChartData();
+            dashboardGraphs.Fornecedor = GetFornecedorChartData();
+            return View(dashboardGraphs);
         }
 
         public IActionResult Privacy()
