@@ -16,7 +16,7 @@ namespace lojas_soul.Models
         public string Email { get; set; }
 
         public string Telefone { get; set; }
-        ICollection<Produto> ProdutoList { get; set; } = new List<Produto>();
+        public ICollection<Produto> ProdutoList { get; set; } = new List<Produto>();
         public Fornecedor()
         {
             // Construtor vazio

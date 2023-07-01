@@ -1,8 +1,50 @@
-﻿@{
+﻿@using Newtonsoft.Json
+@using Microsoft.AspNetCore.Identity
+
+@{
     ViewData["Title"] = "Home Page";
+
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <canvas id="myChartFornecedor"></canvas>
 </div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var fornecedorChartData = {
+            labels: @Html.Raw(JsonConvert.SerializeObject(Model.FornecedorChart.Labels)),
+            values: @Html.Raw(JsonConvert.SerializeObject(Model.FornecedorChart.Values))
+                        };
+
+        var fornecedorContext = document.getElementById('myChartFornecedor').getContext('2d');
+
+        var fornecedorChart = new Chart(fornecedorContext, {
+            type: 'bar',
+            data: {
+                labels: fornecedorChartData.labels,
+                datasets: [{
+                    label: 'Produtos por Fornecedor',
+                    data: fornecedorChartData.values,
+                    backgroundColor: 'rgba(106, 90, 205, 0.5)',
+                    borderColor: 'rgba(90, 90, 90, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        min: 0,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}

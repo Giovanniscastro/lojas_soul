@@ -10,7 +10,6 @@ namespace lojas_soul.Models
         [StringLength(60)]
         public string Descricao { get; set; }
         public double Valor { get; set; }
-        [StringLength(3)]
         public int Quantidade { get; set; }
         [Display(Name = "Fornecedor")]
         public int FornecedorId { get; set; }
