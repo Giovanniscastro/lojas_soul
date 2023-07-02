@@ -10,6 +10,7 @@ namespace lojas_soul.Models
         [Display(Name = "Tipo")]
         public Tipo Type { get; set; }
         [Required]
+        //não ta conseguindo colocar valores com . ou , pois ele busca inteiro
         public double Valor { get; set; }
         [Display(Name = "Data Pagamento")]
         public DateTime DataPagamento { get; set; }

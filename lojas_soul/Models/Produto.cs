@@ -9,6 +9,7 @@ namespace lojas_soul.Models
         public string Nome { get; set; }
         [StringLength(60)]
         public string Descricao { get; set; }
+        //não ta conseguindo colocar valores com . ou , pois ele busca inteiro
         public double Valor { get; set; }
         public int Quantidade { get; set; }
         [Display(Name = "Fornecedor")]
